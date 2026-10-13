@@ -1,0 +1,52 @@
+Field,Type,Description
+id,integer,Airbnb's unique identifier for the listing
+host_id,integer,Airbnb's unique identifier for the host/user
+host_since,date,The date the host/user was created. For hosts that are Airbnb guests this could be the date they registered as a guest.
+host_response_time,factor,
+host_response_rate,percentage,
+host_acceptance_rate,percentage,That rate at which a host accepts booking requests.
+host_is_superhost,boolean [t=true; f=false],
+host_listings_count,text,The number of listings the host has (per Airbnb unknown calculations)
+host_verifications,factor,
+neighbourhood_ward,text,The neighbourhood ward as geocoded using the latitude and longitude against neighborhoods as defined by open or public digital shapefiles.
+latitude,numeric,Uses the World Geodetic System (WGS84) projection for latitude and longitude.
+longitude,numeric,Uses the World Geodetic System (WGS84) projection for latitude and longitude.
+room_type,factor,"[Entire home/apt|Private room|Shared room|Hotel]
+
+All homes are grouped into the following three room types:
+
+Entire place
+Private room
+Shared room
+Entire place
+Entire places are best if you're seeking a home away from home. With an entire place, you'll have the whole space to yourself. This usually includes a bedroom, a bathroom, a kitchen, and a separate, dedicated entrance. Hosts should note in the description if they'll be on the property or not (ex: ""Host occupies first floor of the home""), and provide further details on the listing.
+
+Private rooms
+Private rooms are great for when you prefer a little privacy, and still value a local connection. When you book a private room, you'll have your own private room for sleeping and may share some spaces with others. You might need to walk through indoor spaces that another host or guest may occupy to get to your room.
+
+Shared rooms
+Shared rooms are for when you don't mind sharing a space with others. When you book a shared room, you'll be sleeping in a space that is shared with others and share the entire space with other people. Shared rooms are popular among flexible travelers looking for new friends and budget-friendly stays."
+accommodates,integer,The maximum capacity of the listing
+bathrooms,numeric,The number of bathrooms in the listing
+bedrooms,integer,The number of bedrooms
+beds,integer,The number of bed(s)
+price,integer,daily price in local currency.
+minimum_nights,integer,minimum number of night stay for the listing (calendar rules may be different)
+maximum_nights,integer,maximum number of night stay for the listing (calendar rules may be different)
+minimum_nights_avg_ntm,numeric,the average minimum_night value from the calender (looking 365 nights in the future)
+maximum_nights_avg_ntm,numeric,the average maximum_night value from the calender (looking 365 nights in the future)
+availability_30,integer,avaliability_x. The availability of the listing x days in the future as determined by the calendar. Note a listing may not be available because it has been booked by a guest or blocked by the host.
+availability_60,integer,avaliability_x. The availability of the listing x days in the future as determined by the calendar. Note a listing may not be available because it has been booked by a guest or blocked by the host.
+availability_90,integer,avaliability_x. The availability of the listing x days in the future as determined by the calendar. Note a listing may not be available because it has been booked by a guest or blocked by the host.
+availability_365,integer,avaliability_x. The availability of the listing x days in the future as determined by the calendar. Note a listing may not be available because it has been booked by a guest or blocked by the host.
+number_of_reviews,integer,The number of reviews the listing has
+review_scores_rating,numeric,
+instant_bookable,boolean,[t=true; f=false]. Whether the guest can automatically book the listing without the host requiring to accept their booking request. An indicator of a commercial listing.
+reviews_per_month,numeric,"The average number of reviews per month the listing has over the lifetime of the listing.
+
+Psuedocoe/~SQL:
+
+IF scrape_date - first_review <= 30 THEN number_of_reviews
+ELSE number_of_reviews / ((scrape_date - first_review + 1) / (365/12))
+
+"
